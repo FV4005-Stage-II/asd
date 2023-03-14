@@ -49,6 +49,26 @@ class MyArr {
     T& operator*();
     void operator=(T* val);
   };
+  class rIterator
+  {
+  private:
+    T *tmp;
+
+  public:
+    T get_tmp();
+    rIterator(T *val);
+    rIterator();
+    T &operator+(int n);
+    T &operator-(int n);
+    T &operator--(int);
+    T &operator++(int);
+    T &operator--();
+    T &operator++();
+    bool operator!=(const Iterator &it);
+    bool operator==(const Iterator &it);
+    T &operator*();
+    void operator=(T *val);
+  };
   inline T* begin() const noexcept;
   inline T* end() const noexcept;
   inline T* r_begin() const noexcept;

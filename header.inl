@@ -222,6 +222,9 @@ void MyArr<T>::Iterator::operator=(T* val) {
   tmp = val;
 }
 
+
+
+
 template <typename T>
 inline T* MyArr<T>::begin() const noexcept  //    begin()
 {
@@ -241,4 +244,73 @@ template <typename T>
 inline T* MyArr<T>::r_end() const noexcept  //  ""    end()
 {
   return arr;
+}
+
+
+
+
+
+template <typename T>
+T MyArr<T>::rIterator::get_tmp()
+{
+  return *tmp;
+}
+
+template <typename T>
+MyArr<T>::rIterator::rIterator(T* val) : tmp(val) {}
+
+template <typename T>
+MyArr<T>::rIterator::rIterator()
+{
+  tmp = NULL;
+}
+template <typename T>
+T &MyArr<T>::rIterator::operator+(int n)
+{
+  return *(tmp + n);
+}
+template <typename T>
+T &MyArr<T>::rIterator::operator-(int n)
+{
+  return *(tmp - n);
+}
+template <typename T>
+T &MyArr<T>::rIterator::operator--(int)
+{ /*tmp++;*/
+  return *(tmp--);
+}
+template <typename T>
+T &MyArr<T>::rIterator::operator++(int)
+{
+  return *(tmp++);
+}
+template <typename T>
+T &MyArr<T>::rIterator::operator--()
+{
+  return *(--tmp);
+}
+template <typename T>
+T &MyArr<T>::rIterator::operator++()
+{
+  return *(++tmp);
+}
+template <typename T>
+bool MyArr<T>::rIterator::operator!=(const Iterator &it)
+{
+  return tmp != it.tmp;
+}
+template <typename T>
+bool MyArr<T>::rIterator::operator==(const Iterator &it)
+{
+  return tmp == it.tmp;
+}
+template <typename T>
+T &MyArr<T>::rIterator::operator*()
+{
+  return *tmp;
+}
+template <typename T>
+void MyArr<T>::rIterator::operator=(T *val)
+{
+  tmp = val;
 }
