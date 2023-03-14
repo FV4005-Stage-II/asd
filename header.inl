@@ -277,22 +277,22 @@ T &MyArr<T>::rIterator::operator-(int n)
 template <typename T>
 T &MyArr<T>::rIterator::operator--(int)
 { /*tmp++;*/
-  return *(tmp--);
+  return *(tmp++);
 }
 template <typename T>
 T &MyArr<T>::rIterator::operator++(int)
 {
-  return *(tmp++);
+  return *(tmp--);
 }
 template <typename T>
 T &MyArr<T>::rIterator::operator--()
 {
-  return *(--tmp);
+  return *(++tmp);
 }
 template <typename T>
 T &MyArr<T>::rIterator::operator++()
 {
-  return *(++tmp);
+  return *(--tmp);
 }
 template <typename T>
 bool MyArr<T>::rIterator::operator!=(const Iterator &it)
