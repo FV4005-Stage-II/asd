@@ -51,6 +51,10 @@ class MyArr {
   };
   inline T* begin() const noexcept;
   inline T* end() const noexcept;
+  inline T* r_begin() const noexcept;
+  inline T* r_end() const noexcept;
+  
 };
+
 
 #include "header.inl"

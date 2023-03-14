@@ -232,3 +232,13 @@ inline T* MyArr<T>::end() const noexcept  //  ""    end()
 {
   return arr + size;
 }
+template <typename T>
+inline T* MyArr<T>::r_begin() const noexcept  //    begin()
+{
+  return arr + size;
+}
+template <typename T>
+inline T* MyArr<T>::r_end() const noexcept  //  ""    end()
+{
+  return arr;
+}
