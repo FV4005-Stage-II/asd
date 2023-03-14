@@ -16,34 +16,49 @@ std::string res_fanc(bool val) {
 
 int main(void) {
   setlocale(LC_ALL, "RUS");
-  MyArr<int> arr(5);
+  int n;
+  cout << "введите размер списка: ";
+  cin >> n;
+  MyArr<int> arr(n);
 
   // for (int i (0); i < 10; i++)
   // 	arr.push_back(i);
   MyArr<int>::Iterator it = arr.begin();
+  MyArr<int>::rIterator r_it = arr.r_begin();
   while (1) {
     int choice(0);
     int index(0);
     int value{0};
 
     // MyArr<int>::Iterator it(arr.begin());
-    cout << "1: опрос размера списка" << endl
-         << "2: очистка списка" << endl
-         << "3: проверка списка на пустоту" << endl
-         << "4: опрос наличия заданного значения" << endl
-         << "5: чтение значения с заданным номером в списке" << endl
-         << "6: изменение значения с заданным номером в списке" << endl
-         << "7: получение позиции в списке для заданного значения" << endl
-         << "8: включение нового значения" << endl
-         << "9: включение нового значения в позицию с заданным номером" << endl
-         << "10: удаление заданного значения из списка" << endl
-         << "11: удаление значения из позиции с заданным номером" << endl
-         << "12: вывод элементов списка" << endl
-         << "13 установка на новое значение" << endl
-         << "14 переход к след. зн." << endl
-         << "15 переход к пред. зн." << endl
-         << "16 чтение значения" << endl
-         << "17 чтение размера" << endl
+    cout << "<---------------------МЕНЮ--------------------->\n"
+         << "1: опрос размера списка" << endl
+         << "2: опрос кол-ва ячеек" << endl
+         << "3: очистка списка" << endl
+         << "4: проверка списка на пустоту" << endl
+         << "5: опрос наличия заданного значения" << endl
+         << "6: чтение значения с заданным номером в списке" << endl
+         << "7: изменение значения с заданным номером в списке" << endl
+         << "8: получение позиции в списке для заданного значения" << endl
+         << "9: включение нового значения" << endl
+         << "10: включение нового значения в позицию с заданным номером" << endl
+         << "11: удаление элемента по значение" << endl
+         << "12: удаление элемента по индексу" << endl
+         << "13: вывод элементов списка" << endl
+         << " <--------------Прямой итератор--------------->\n"
+         << "14: итератор на начало\n"
+         << "15: итератор на конец\n"
+         << "16: установка на новое значение (It)" << endl
+         << "17: переход к след. зн. (It)" << endl
+         << "18: переход к пред. зн. (It)" << endl
+         << "19: чтение значения (It)" << endl
+         << " <-------------Обратный итератор-------------->\n"
+         << "20: итератор на начало\n"
+         << "21: итератор на конец\n"
+         << "22: установка на новое значение (r_It)" << endl
+         << "23: переход к след. зн. (r_It)" << endl
+         << "24: переход к пред. зн. (r_It)" << endl
+         << "25: чтение значения (r_It)" << endl
          << "0: Выход" << endl;
 
     cout << "Введите номер пункта: ";
@@ -57,16 +72,19 @@ int main(void) {
           cout << arr.get_size() << endl;
           break;
         case 2:
+          cout << arr.get_capacity() << endl;
+          break;
+        case 3:
           arr.clear();
           cout << "Список очищен" << endl;
           break;
-        case 3:
+        case 4:
           if (arr.empty())
             cout << "Список пустой" << endl;
           else
             cout << "Список не пустой" << endl;
           break;
-        case 4:
+        case 5:
           cout << "Введите индекс: ";
           cin >> index;
           if (arr.check_value(index))
@@ -74,19 +92,19 @@ int main(void) {
           else
             cout << "Заданного значения не существует" << endl;
           break;
-        case 5:
+        case 6:
           cout << "Введите индекс: ";
           cin >> index;
           cout << arr[index];
           break;
-        case 6:
+        case 7:
           cout << "Введите индекс: ";
           cin >> index;
           cout << "Введите значение: ";
           cin >> value;
           cout << res_fanc(arr.change_value(index, value)) << endl;
           break;
-        case 7:
+        case 8:
           cout << "Введите значение: ";
           cin >> value;
           if (arr.get_index(value) == 0)
@@ -94,51 +112,103 @@ int main(void) {
           else
             cout << arr.get_index(value) << endl;
           break;
-        case 8:
+        case 9:
           cout << "Введите значение: ";
           cin >> value;
           arr.push_back(value);
           break;
-        case 9:
+        case 10:
           cout << "Введите индекс: ";
           cin >> index;
           cout << "Введите значение: ";
           cin >> value;
           cout << res_fanc(arr.set_value(index, value)) << endl;
           break;
-        case 10:
+        case 11:
           cout << "Введите значение: ";
           cin >> value;
           cout << res_fanc(arr.del_value(value)) << endl;
           break;
-        case 11:
+        case 12:
           cout << "Введите индекс: ";
           cin >> index;
           cout << res_fanc(arr.erase(index)) << endl;
           break;
-        case 12:
+        case 13:
           for (int i = 0; i < arr.get_size(); i++) {
             cout << arr[i] << ' ';
           }
           cout << endl;
           break;
-        case 13:
+
+        case 14: {
+        if (arr.empty() == true) {
+          cout << "массив пуст." << endl;
+          break;
+        }
+        it = arr.begin();
+        cout << "Прямой итератор установлен на начало и равен значению: " << *it
+             << endl;
+      } break;
+
+        case 15: {
+        if (arr.empty() == true) {
+          cout << "массив пуст." << endl;
+          break;
+        }
+        it = arr.end();
+        cout << arr.get_size();
+        cout << "Неустановленный прямой итератор равен значению: " << *it
+             << endl;
+      } break;
+
+        case 16:
           cout << "Введите индекс: ";
           cin >> index;
-          *it = arr[index];
-          break;
-        case 14:
-          (*it)++;
-          break;
-        case 15:
-          (*it)--;
-          break;
-        case 16:
-          cout << *it << endl;
+          it = arr.begin() + index;
           break;
         case 17:
-          cout << arr.get_capacity() << endl;
-          cout << arr.get_size() << endl;
+          it++;
+          break;
+        case 18:
+          it--;
+          break;
+        case 19:
+          cout << *it << endl;
+          break;
+        case 20: {
+        if (arr.empty() == true) {
+          cout << "массив пуст." << endl;
+          break;
+        }
+        r_it = arr.r_begin();
+        cout << "Прямой итератор установлен на начало и равен значению: " << *r_it
+             << endl;
+      } break;
+
+        case 21: {
+        if (arr.empty() == true) {
+          cout << "массив пуст." << endl;
+          break;
+        }
+        r_it = arr.r_end();
+        cout << arr.get_size();
+        cout << "Неустановленный прямой итератор равен значению: " << *r_it
+             << endl;
+      } break;
+        case 22:
+          cout << "Введите индекс: ";
+          cin >> index;
+          r_it = arr.r_begin() + index;
+          break;
+        case 23:
+          r_it++;
+          break;
+        case 24:
+          r_it--;
+          break;
+        case 25:
+          cout << *r_it << endl;
           break;
       }
     } catch (const char* msg) {

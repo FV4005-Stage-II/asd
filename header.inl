@@ -107,14 +107,10 @@ void MyArr<T>::push_back(const T ob) {
     capacity += num;
     T* newArray = new T[capacity];
     for (int i = 0; i < size; i++) newArray[i] = arr[i];
-    newArray[size] = ob;
-    this->size++;
     delete[] arr;
     arr = newArray;
-  } else {
-    arr[size] = ob;
-    this->size++;
   }
+    arr[size++] = ob;
 }
 
 template <typename T>
@@ -233,12 +229,12 @@ inline T* MyArr<T>::begin() const noexcept  //    begin()
 template <typename T>
 inline T* MyArr<T>::end() const noexcept  //  ""    end()
 {
-  return arr + size;
+  return arr + (size - 1);
 }
 template <typename T>
 inline T* MyArr<T>::r_begin() const noexcept  //    begin()
 {
-  return arr + size;
+  return arr + (size - 1);
 }
 template <typename T>
 inline T* MyArr<T>::r_end() const noexcept  //  ""    end()
