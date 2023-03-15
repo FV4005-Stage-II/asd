@@ -52,13 +52,15 @@ int main(void) {
          << "17: переход к след. зн. (It)" << endl
          << "18: переход к пред. зн. (It)" << endl
          << "19: чтение значения (It)" << endl
+         << "20: запись значения (It)" << endl
          << " <-------------Обратный итератор-------------->\n"
-         << "20: итератор на начало\n"
-         << "21: итератор на конец\n"
-         << "22: установка на новое значение (r_It)" << endl
-         << "23: переход к след. зн. (r_It)" << endl
-         << "24: переход к пред. зн. (r_It)" << endl
-         << "25: чтение значения (r_It)" << endl
+         << "21: итератор на начало\n"
+         << "22: итератор на конец\n"
+         << "23: установка на новое значение (r_It)" << endl
+         << "24: переход к след. зн. (r_It)" << endl
+         << "25: переход к пред. зн. (r_It)" << endl
+         << "26: чтение значения (r_It)" << endl
+         << "27: запись значения (r_It)" << endl
          << "0: Выход" << endl;
 
     cout << "Введите номер пункта: ";
@@ -176,7 +178,10 @@ int main(void) {
         case 19:
           cout << *it << endl;
           break;
-        case 20: {
+        case 20:
+          cin >> *it;
+          break;
+        case 21: {
         if (arr.empty() == true) {
           cout << "массив пуст." << endl;
           break;
@@ -186,7 +191,7 @@ int main(void) {
              << endl;
       } break;
 
-        case 21: {
+        case 22: {
         if (arr.empty() == true) {
           cout << "массив пуст." << endl;
           break;
@@ -196,19 +201,22 @@ int main(void) {
         cout << "Неустановленный прямой итератор равен значению: " << *r_it
              << endl;
       } break;
-        case 22:
+        case 23:
           cout << "Введите индекс: ";
           cin >> index;
           r_it = arr.r_begin() + index;
           break;
-        case 23:
+        case 24:
           r_it++;
           break;
-        case 24:
+        case 25:
           r_it--;
           break;
-        case 25:
+        case 26:
           cout << *r_it << endl;
+          break;
+        case 27:
+          cin >> *r_it;
           break;
       }
     } catch (const char* msg) {

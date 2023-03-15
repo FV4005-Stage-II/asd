@@ -53,9 +53,9 @@ template <typename T>
 const T& MyArr<T>::operator[](int index) {  //
 
   if (empty()) {
-    throw "The list is empty!";
+    throw "Исключение";
   } else if (index < 0 || index > size - 1) {
-    throw "Index out of range!";
+    throw "Исключение";
   }
 
   return arr[index];
@@ -72,10 +72,10 @@ template <typename T>
 bool MyArr<T>::change_value(int index, T value) {  //
   bool check = true;
   if (empty()) {
-    throw "The list is empty!";
+    throw "Исключение";
     check = false;
   } else if (index < 0 || index > size - 1) {
-    throw "Index out of range!";
+    throw "Исключение";
     check = false;
   } else {
     arr[index] = value;
@@ -87,7 +87,7 @@ template <typename T>
 int MyArr<T>::get_index(T value) {  //
   int check = 0;
   if (empty()) {
-    throw "The list is empty!";
+    throw "Исключение";
   } else {
     int temp = -1;
     int i = 0;
@@ -117,16 +117,16 @@ template <typename T>
 bool MyArr<T>::erase(int index) {
   bool check = true;
   if (empty()) {
-    throw "The list is empty!";
+    throw "Исключение";
     check = false;
   } else if (index < 0 || index > size - 1) {
-    throw "Index out of range!";
+    throw "Исключение";
     check = false;
   } else {
     for (int i = index; i < size; i++) arr[i] = arr[i + 1];
     size--;
     if (size == (capacity) / 2) {
-      capacity = size + 1;
+      capacity = size + num;
       T* newArray = new T[capacity];
       for (int i = 0; i < size; i++) newArray[i] = arr[i];
       delete[] arr;
@@ -139,10 +139,12 @@ template <typename T>
 bool MyArr<T>::set_value(int index, T value) {
   bool check = true;
   if (empty()) {
-    throw "The list is empty!";
+    throw "Исключение";
     check = false;
+  } else if (index == size) {
+    push_back(value);
   } else if (index < 0 || index > size - 1) {
-    throw "Index out of range!";
+    throw "Исключение";
     check = false;
   } else {
     arr[index] = value;
@@ -154,7 +156,7 @@ template <typename T>
 bool MyArr<T>::del_value(T value) {
   bool check = false;
   if (empty()) {
-    throw "The list is empty!";
+    throw "Исключение";
   } else {
     for (int i = 0; i < size; i++) {
       if (arr[i] == value) {
